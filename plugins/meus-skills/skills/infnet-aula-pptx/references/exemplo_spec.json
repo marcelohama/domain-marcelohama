@@ -1,0 +1,96 @@
+{
+  "arquivo": "Exemplo_Gestao_de_Contexto.pptx",
+  "temas": [
+    {
+      "titulo": "Gestão de Contexto em Projetos Grandes",
+      "slides": [
+        {
+          "subtitulo": "Tema 1: Visão Geral",
+          "corpo": [
+            ["p", "Assistentes de IA geram com rapidez cerca de 70% do código. Os 30% restantes, como arquitetura, regras de negócio e qualidade, dependem de pessoas (Osmani, *Beyond Vibe Coding*, cap. 4)."],
+            ["p", "Este tema trata de uma parte desses 30%: a **gestão de contexto**, que mantém o código gerado coerente em projetos grandes."]
+          ],
+          "imagem": {"arquivo": "img/f01.png", "posicao": "abaixo", "alt": "Barra dividida em 70% (onde a IA acelera) e 30% (parte humana: arquitetura, regras de negócio, contexto e qualidade)."}
+        },
+        {
+          "subtitulo": "Definição de Contexto",
+          "corpo": [
+            ["p", "**Contexto** é tudo o que o modelo recebe em uma conversa: instruções, trechos de código, documentos e mensagens anteriores."],
+            ["p", "A IA não conhece a história do projeto nem o motivo das decisões já tomadas. Como raramente é viável informar tudo, cabe às pessoas carregar esse conhecimento."]
+          ],
+          "imagem": {"arquivo": "img/f02.png", "posicao": "lado", "alt": "O projeto completo contém histórico, decisões, regras e convenções; a IA recebe apenas o pedido e o trecho de código enviados na conversa."}
+        },
+        {
+          "subtitulo": "Perda de Coerência em Projetos Grandes",
+          "corpo": [
+            ["p", "Em um projeto pequeno, quase tudo cabe em uma única conversa. Em um projeto grande há centenas de arquivos, várias pessoas e meses de decisões acumuladas."],
+            ["p", "Sem orientação, a IA tende a resolver o caso geral: entrega um código que funciona sozinho, mas ignora o que já existe. Os efeitos mais comuns são:"],
+            ["b", "nomes e estilos diferentes para a mesma coisa;"],
+            ["b", "funções duplicadas, porque a IA não sabia que já existiam;"],
+            ["b", "soluções que contrariam regras de negócio ou convenções da equipe."]
+          ]
+        },
+        {
+          "subtitulo": "O Papel Humano na Gestão de Contexto",
+          "corpo": [
+            ["p", "O capítulo propõe que o desenvolvedor atue como **arquiteto e editor-chefe**: descreve a tarefa, fornece o contexto necessário e revisa o resultado. A IA digita rápido, mas quem enxerga o sistema inteiro é a pessoa. Essa visão do todo é o **pensamento sistêmico**."]
+          ],
+          "imagem": {"arquivo": "img/f03.png", "posicao": "abaixo", "alt": "Fluxo em três etapas: a pessoa seleciona o contexto e descreve a tarefa, a IA gera o rascunho, a pessoa revisa e integra; o ciclo se repete com o contexto ajustado."}
+        },
+        {
+          "subtitulo": "Estratégia 1: Documento de Contexto do Projeto",
+          "corpo": [
+            ["p", "A IA não considera requisitos do negócio nem convenções da equipe se ninguém os informar. Uma forma simples de garantir isso é manter um **documento de contexto**: um texto curto, enviado no início de cada conversa. Ele costuma conter:"],
+            ["b", "o objetivo do sistema e quem o utiliza;"],
+            ["b", "as tecnologias e os padrões de nomes adotados;"],
+            ["b", "as decisões de arquitetura já tomadas e seus motivos;"],
+            ["b", "as regras de negócio que não podem ser violadas."]
+          ]
+        },
+        {
+          "subtitulo": "Estratégia 2: Divisão do Trabalho em Módulos",
+          "corpo": [
+            ["p", "Princípios como **separação de responsabilidades** e **modularidade** conduzem a IA a soluções fáceis de manter. Cada conversa trata de um módulo por vez e recebe apenas as **interfaces** dos demais: nomes de funções, parâmetros e modelos de dados."]
+          ],
+          "imagem": {"arquivo": "img/f04.png", "posicao": "abaixo", "alt": "Três módulos: Empréstimos está em foco com código completo; de Cadastro e Multas a conversa recebe apenas as interfaces."}
+        },
+        {
+          "subtitulo": "Estratégia 3: Registro de Decisões e Resumo do Estado",
+          "corpo": [
+            ["p", "Em conversas longas, as primeiras instruções perdem força. Ao fim de cada etapa, peça à IA um **resumo do estado**: o que foi decidido, o que falta e quais padrões valem. Inicie a conversa seguinte com esse resumo."]
+          ],
+          "imagem": {"arquivo": "img/f05.png", "posicao": "abaixo", "alt": "O documento de contexto alimenta cada conversa; entre uma conversa e a seguinte há um resumo do estado que é levado adiante."}
+        },
+        {
+          "subtitulo": "Estratégia 4: Revisão com Base nos Padrões do Projeto",
+          "corpo": [
+            ["p", "O código gerado deve ser tratado como o de um desenvolvedor iniciante: precisa de revisão antes de entrar no sistema. Perguntas úteis nessa revisão:"],
+            ["b", "Resolve o problema certo?"],
+            ["b", "Mantém os nomes, os padrões e as interfaces existentes?"],
+            ["b", "Outras pessoas conseguirão entender e manter?"],
+            ["b", "Quais riscos e casos extremos ficaram de fora?"],
+            ["p", "Cada falha encontrada indica um contexto que faltou e que deve ser incluído no documento de contexto."]
+          ]
+        },
+        {
+          "subtitulo": "Exemplo Prático: Pedido sem e com Contexto",
+          "corpo": [
+            ["p", "Use Claude, ChatGPT, Gemini ou Copilot e siga os passos:"],
+            ["n", "Em uma conversa nova, peça: *“Crie uma função em Python para registrar o empréstimo de um livro.”*"],
+            ["n", "Em outra conversa nova, envie antes: *“Projeto BiblioTech. Python 3, nomes em português com snake_case, datas em ISO 8601, erros com a exceção EmprestimoErro. Regras: até 3 livros por aluno e prazo de 14 dias.”* Repita o pedido."],
+            ["n", "Compare nomes, datas, erros e regras de negócio nas duas respostas."]
+          ]
+        },
+        {
+          "subtitulo": "Exercícios de Fixação",
+          "corpo": [
+            ["n", "Explique, com suas palavras, por que a IA não mantém sozinha a coerência de um projeto grande."],
+            ["n", "Escreva um documento de contexto, com até dez linhas, para um sistema de agendamento de consultas de uma clínica."],
+            ["n", "Que estratégia você usaria ao notar que a IA deixou de seguir instruções dadas no início de uma conversa longa? Justifique."],
+            ["n", "Cite duas perguntas de revisão que ajudam a identificar código incoerente com o projeto."]
+          ]
+        }
+      ]
+    }
+  ]
+}
