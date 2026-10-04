@@ -1,0 +1,7 @@
+{
+  "name": "hama-skills",
+  "owner": { "name": "Marcelo Hama" },
+  "plugins": [
+    { "name": "meus-skills", "source": "./plugins/meus-skills", "description": "Meus skills pessoais" }
+  ]
+}
