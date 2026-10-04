@@ -1,25 +1,33 @@
-# As três fontes: o que cada uma tem e onde divergem
+# As fontes: o que cada uma tem e onde divergem
 
 Leia antes de redigir. As fontes foram escritas em momentos e para públicos diferentes, então contam o mesmo fato com palavras, datas e números ligeiramente diferentes. Um CV que mistura versões se contradiz na entrevista.
 
 ## Papel de cada fonte
 
-| Arquivo em `assets/` | O que é | Use para |
+| Arquivo | O que é | Use para |
 |---|---|---|
-| `CV - MARCELO TOMIO HAMA.pdf` | CV padrão, em inglês, 1 página | Template, tom, tamanho dos marcadores, contato, e **desempate** de datas, cargos e números |
-| `LinkedInProfile.pdf` | Perfil completo do LinkedIn, em português | Conteúdo profissional: responsabilidades, resultados e stack de cada cargo, com mais detalhe que o CV base |
-| `Lattes.pdf` | Currículo Lattes completo | Conteúdo acadêmico: títulos e orientadores das dissertações, publicações, livro, palestras, eventos, vínculos de docência, produção técnica, cursos |
+| `assets/CV - MARCELO TOMIO HAMA.pdf` | CV padrão, em inglês, 1 página | Template, tom, tamanho dos marcadores, contato, e **desempate** de datas, cargos e números |
+| `assets/LinkedInProfile.pdf` | Perfil completo do LinkedIn, em português | Conteúdo profissional: responsabilidades, resultados e stack de cada cargo, com mais detalhe que o CV base |
+| `assets/Lattes.pdf` | Currículo Lattes completo | Conteúdo acadêmico: títulos e orientadores das dissertações, publicações, livro, palestras, eventos, vínculos de docência, produção técnica, cursos |
+| `references/historias-star.md` | Banco de histórias STAR do Marcelo, em inglês | O como de cada resultado (runbook, comitê, cerimônias, método) e resultados que os PDFs não trazem |
 
 ## Ordem de precedência
 
 1. O que o usuário disser na conversa (é a informação mais nova).
 2. CV base, para datas, cargos, números e nível de idioma: é a versão que ele já envia.
 3. LinkedIn, para tudo o que o CV base não traz sobre a carreira.
-4. Lattes, para tudo o que é acadêmico; para carreira, só quando as outras duas se calam.
+4. Banco de histórias STAR, para ações e resultados que os PDFs não trazem. Quando um número dele divergir do CV base ou do LinkedIn, valem estes; a lista está no fim de `historias-star.md`.
+5. Lattes, para tudo o que é acadêmico; para carreira, só quando as outras se calam.
 
 Quando uma divergência afetar algo que entrou no CV, diga no relato final qual versão foi usada.
 
 ## O que só existe em uma fonte
+
+**Só no banco de histórias STAR**
+- Pismo/Visa: runbook e comitê de Ops junto com o on-call; backlog de estabilidade e suporte zerado; retros e cerimônias de time, satisfação de 77 para 83 pontos, unificação de 2 squads; promoções a nível staff/consultant; processo de AIOps com Claude fechando +100 findings de segurança por mês; delay E2E do Autoloader de 30 min para 1 min.
+- Itaú: crashes do app iti abaixo de 0,01% das sessões e App Score de 3 para 4,7; autenticação usada por 55 milhões de clientes.
+- MercadoPago: meetups e parceria com a comunidade não oficial, +200% de clientes rastreados.
+- NIC.br: Monitor Banda Larga entregue para Windows, macOS, iOS e Android; PoC do SIMET instalada por cerca de 1 milhão de usuários.
 
 **Só no LinkedIn**
 - Pismo/Visa: 2 squads (Assets e Interest Management); comitês de cybersec, inovação e backlog; colegiado de arquitetura; engenharia orientada a GenAI (Claude skills e agentes); +1500% de volume operacional com onboarding de 2 clientes; lançamento de 2 produtos (CDB Comandado e Conta Remunerada); tempo de resposta -76%.
@@ -45,7 +53,7 @@ Quando uma divergência afetar algo que entrou no CV, diga no relato final qual 
 
 ## Divergências conhecidas (levantadas em 03/10/2026)
 
-Se os PDFs em `assets/` forem trocados por versões mais novas, reconfira esta tabela contra o texto extraído.
+Se os PDFs em `assets/` forem trocados por versões mais novas, reconfira esta tabela contra o texto extraído. As divergências do banco de histórias STAR estão no fim de `historias-star.md`.
 
 | Assunto | CV base | LinkedIn | Lattes |
 |---|---|---|---|

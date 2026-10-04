@@ -1,6 +1,6 @@
 ---
 name: cv-job-tailor
-description: "Gera um CV do Marcelo Tomio Hama em PDF, personalizado para uma vaga, a partir do texto da job description: escolhe e reescreve o conteúdo do LinkedIn e do Lattes, omite o que não serve à vaga, destaca o que ela pede e monta no template do CV base, legível por ATS e por triagem com IA. Use sempre que o usuário colar ou enviar uma descrição de vaga (JD) e pedir CV, currículo ou resume adaptado, personalizado, sob medida ou para uma vaga específica, mesmo sem citar a skill. Para só avaliar aderência, sem gerar CV, use cv-job-fit."
+description: "Gera um CV do Marcelo Tomio Hama em PDF, personalizado para uma vaga, a partir do texto da job description: escolhe e reescreve o conteúdo do LinkedIn, do Lattes e do banco de histórias STAR, omite o que não serve à vaga, destaca o que ela pede e monta no template do CV base, legível por ATS e por triagem com IA. Use sempre que o usuário colar ou enviar uma descrição de vaga (JD) e pedir CV, currículo ou resume adaptado, personalizado, sob medida ou para uma vaga específica, mesmo sem citar a skill. Para só avaliar aderência, sem gerar CV, use cv-job-fit."
 ---
 
 # CV personalizado para uma vaga
@@ -18,6 +18,7 @@ Uma JD, colada no chat, anexada ou em link. Se não veio, peça só isso. Não p
 | `assets/LinkedInProfile.pdf` | Conteúdo profissional completo. Fonte principal dos fatos de carreira. |
 | `assets/Lattes.pdf` | Conteúdo acadêmico completo: formação, dissertações, publicações, docência, palestras. |
 | `assets/CV - MARCELO TOMIO HAMA.pdf` | CV base: modelo de template, tom e tamanho, e desempate quando as fontes divergem. |
+| `references/historias-star.md` | Banco de histórias STAR: o como de cada resultado e resultados que os PDFs não trazem. |
 | `references/fontes.md` | O que só existe em cada fonte, divergências conhecidas e ordem de precedência. |
 | `references/exemplo_spec.json` | O CV base transcrito para o formato de entrada do gerador. |
 | `scripts/extract_sources.py` | Extrai o texto dos três PDFs. |
@@ -26,11 +27,21 @@ Uma JD, colada no chat, anexada ou em link. Se não veio, peça só isso. Não p
 
 Dependências: `pip install reportlab pypdf`.
 
+## Onde estão os recursos
+
+Os scripts, as referências e os três PDFs ficam no repositório privado `marcelohama/domain-marcelohama`, na pasta `plugins/meus-skills/skills/cv-job-tailor/`. Todos os caminhos deste documento são relativos a essa pasta. Antes de começar, localize-a:
+
+- **Há `scripts/` e `assets/` ao lado deste arquivo** (skill carregada do próprio repositório ou do plugin `meus-skills`): use a pasta diretamente.
+- **Sessão na nuvem, só com este SKILL.md**: anexe o repositório `marcelohama/domain-marcelohama` à sessão, clone e trabalhe a partir da pasta acima.
+- **Sessão ligada ao computador do Marcelo**: a raiz local do repositório é `C:\Users\marce\OneDrive\Área de Trabalho\domain-marcelohama`. Rode `git pull` antes, para usar os PDFs e scripts mais recentes.
+
+Se nenhum caminho funcionar, diga o que falta (acesso ao repositório ou ao computador) e pare. Não gere o CV de memória nem com um gerador improvisado: sem as fontes não há como garantir a veracidade, e sem os scripts o resultado sai fora do template e sem a conferência de leitura.
+
 ## Fluxo de trabalho
 
 Use um diretório de trabalho temporário, fora da skill, para os textos extraídos e o spec.
 
-1. **Extrair as fontes**: `python scripts/extract_sources.py --out-dir <trabalho>`. Leia os três .txt inteiros e depois `references/fontes.md`. A extração é refeita a cada uso para que um PDF atualizado em `assets/` valha na hora.
+1. **Extrair as fontes**: `python scripts/extract_sources.py --out-dir <trabalho>`. Leia os três .txt inteiros, depois `references/historias-star.md` e `references/fontes.md`. A extração é refeita a cada uso para que um PDF atualizado em `assets/` valha na hora.
 2. **Ler a vaga** e separar: cargo e senioridade; requisitos obrigatórios; desejáveis; termos exatos que ela usa (tecnologias, métodos, domínio de negócio); idioma; local e modelo de trabalho; instruções de candidatura.
 3. **Mapear evidência**: para cada requisito, o fato das fontes que o comprova. O que ficar sem evidência é lacuna e vai para o relato, não para o CV.
 4. **Selecionar e redigir** conforme as seções abaixo.
@@ -43,9 +54,10 @@ Grave o PDF na pasta de trabalho do usuário, ou entregue na conversa quando a s
 
 ## Veracidade
 
-Tudo o que entra no CV precisa estar em uma das três fontes ou ter sido dito pelo usuário na conversa. Reordenar, resumir, traduzir e trocar um termo pelo sinônimo que a vaga usa é personalizar. Acrescentar tecnologia, número, cargo, escopo de equipe ou domínio que as fontes não mostram é inventar, e um CV inventado cai na primeira pergunta técnica da entrevista, queimando a candidatura e a referência.
+Tudo o que entra no CV precisa estar em uma das fontes (os três PDFs e o banco de histórias STAR) ou ter sido dito pelo usuário na conversa. Reordenar, resumir, traduzir e trocar um termo pelo sinônimo que a vaga usa é personalizar. Acrescentar tecnologia, número, cargo, escopo de equipe ou domínio que as fontes não mostram é inventar, e um CV inventado cai na primeira pergunta técnica da entrevista, queimando a candidatura e a referência.
 
 - Números saem das fontes exatamente como estão. Quando divergirem, siga a precedência de `references/fontes.md`.
+- Do banco de histórias STAR, o marcador aproveita a ação e o resultado. Histórias sobre uma pessoa específica (atrito, baixa performance, desligamento) ficam para a entrevista: no CV entra só o resultado para o time.
 - Cargo: use uma das formas que as fontes trazem para aquele emprego, a mais próxima do vocabulário da vaga. Não crie cargo novo.
 - Experiência adjacente não vira especialidade. O plugin do MercadoPago é integração de pagamentos para lojistas, não processamento de pagamentos; liderar times com engenheiros de dados não é ser engenheiro de dados.
 - Palavra-chave da vaga sem evidência fica fora, mesmo que derrube a cobertura no `check_cv.py`. Lacuna declarada ao usuário é útil; lacuna maquiada no CV é risco.
@@ -67,7 +79,7 @@ O CV base já é o resultado de um corte. Para a vaga, corte de novo, com o crit
 - **Título** (campo `titulo`, logo abaixo do nome): o cargo da vaga, quando ele descreve com verdade o que o Marcelo já exerceu; senão, o cargo real mais próximo. É a primeira coisa que filtro e recrutador comparam com a vaga.
 - **Resumo**: 3 a 5 linhas reescritas para a vaga. Abra com cargo e escopo (anos de liderança, tamanho de time, domínios), siga com os 2 ou 3 fatos que mais respondem aos requisitos obrigatórios e inclua os termos principais da JD. Sem adjetivos de autopromoção nem frase pessoal.
 - **Competências**: logo após o resumo, só as que a vaga pede ou que sustentam a senioridade, agrupadas quando houver mais de umas 10 (ex.: Leadership, Cloud & Data, Languages). Escreva o termo como a vaga escreve.
-- **Experiência**: dentro de cada cargo, ordene os marcadores por relevância para a vaga, não pela ordem das fontes. Empregos recentes e aderentes levam 3 a 5 marcadores; os demais, 1 ou 2. O LinkedIn tem resultados que o CV base não traz: use-os quando respondem à vaga.
+- **Experiência**: dentro de cada cargo, ordene os marcadores por relevância para a vaga, não pela ordem das fontes. Empregos recentes e aderentes levam 3 a 5 marcadores; os demais, 1 ou 2. O LinkedIn e o banco de histórias STAR têm resultados que o CV base não traz: use-os quando respondem à vaga.
 - **Marcadores**: verbo de ação, o que foi feito, resultado medido. Até 2 linhas cada. Corrija a gramática ao reescrever, sem mudar o fato.
 - **Vocabulário da vaga**: quando a fonte e a vaga falam da mesma coisa com nomes diferentes, use o da vaga e mantenha o original se ele ajuda. Fonte "Kafka/MSK", vaga "Apache Kafka": escreva "Apache Kafka (AWS MSK)". Escreva siglas por extenso na primeira vez quando a vaga usa a forma longa.
 - **Formação e certificações**: as que a vaga pede vêm primeiro. Detalhes do Lattes (tema da dissertação, orientador, bolsa CNPq) entram quando o tema conversa com a vaga, como IA, agentes ou big data.
