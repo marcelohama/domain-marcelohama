@@ -1,0 +1,176 @@
+{
+  "_nota": "Exemplo de spec: é o CV base transcrito para o formato, sem personalização. Serve de modelo de estrutura e de ponto de partida; o conteúdo de cada vaga sai das fontes em assets/. Chaves iniciadas por _ e o bloco 'vaga' são ignorados pelo build_cv.py; 'vaga.palavras_chave' é lido pelo check_cv.py.",
+  "arquivo": "CV - MARCELO TOMIO HAMA - Empresa.pdf",
+  "idioma": "en",
+  "layout": "ats",
+  "densidade": "normal",
+  "vaga": {
+    "empresa": "Empresa",
+    "cargo": "Engineering Manager",
+    "palavras_chave": ["people management", "AWS", "Kafka", "Kubernetes", "system design", "on-call", "FinOps", "DORA"]
+  },
+  "nome": "MARCELO TOMIO HAMA",
+  "titulo": "Engineering/Data Manager",
+  "contato": {
+    "telefone": "+55 11 99723-1418",
+    "email": "hama.marcelo.ti@gmail.com",
+    "linkedin": "linkedin.com/in/marcelohama",
+    "local": ""
+  },
+  "resumo": "IT and Software Engineering Manager with emphasis on platformed digital products oriented for high performance in the cloud. Career founded as a Software Engineer from 2006 to 2018, on projects in education, internet engineering, and e-commerce. Tech leadership since 2018 and people management since 2021, leading structures ranging from 6 to 40 engineers of all levels (junior to specialist) in core banking, payment systems, e-commerce, and high-performance indicator-processing platforms. In parallel, university professor, speaker, and content writer for tech education.",
+  "competencias": [
+    "C/C#", "Java + Spring Framework", "Python", "GoLang", "Spark/Hadoop", "LLMOps", "Airflow", "AWS",
+    "Google Cloud", "Databricks", "Kubernetes", "Kafka/MSK", "Docker", "Grafana", "Splunk",
+    "Atlassian Toolset", "GitHub", "Management 3.0", "Scrum"
+  ],
+  "experiencias": [
+    {
+      "cargo": "IT & Data Engineering Manager",
+      "empresa": "PISMO / VISA Inc.",
+      "periodo": "Aug 2024 - Sep 2026",
+      "local": "",
+      "itens": [
+        "Direct lead of 9 global engineers (senior and specialist), promoted 2;",
+        "System design for Interest Accrual and Assets, with 2 new clients;",
+        "Created the on-call agenda and structure for operations, which featured MTTR -17%, SLO +21%, and CSAT +29%;",
+        "Improved monitoring tools, developing and scaling 2 Grafana dashboards for tactical follow-up of +12 trillion asset quotas per day;",
+        "Fostered the use of AI tools (LLMOps), which featured a >90% reduction of security findings and unit test coverage from 34% to 85%."
+      ]
+    },
+    {
+      "cargo": "Tech Manager",
+      "empresa": "Natura &Co",
+      "periodo": "Feb 2023 - Aug 2024",
+      "local": "",
+      "itens": [
+        "Returned by invitation; direct and indirect lead of +40 engineers of all levels;",
+        "Led the FinOps operation that reduced OPEX costs by +R$1MM/year;",
+        "Led ScyllaDB from single-rack to multi-rack (-30% of processing time);",
+        "Reduced engineering cycle-time by 50%, via DORA metrics and DevOps culture."
+      ]
+    },
+    {
+      "cargo": "Software Engineering Manager",
+      "empresa": "OLX Brasil",
+      "periodo": "Dec 2021 - Dec 2022",
+      "local": "",
+      "itens": [
+        "Direct lead of 6 engineers (GoLang, JavaScript, Mobile, and Data);",
+        "Deployed A/B tests to identify market opportunities;",
+        "Fixed +10 AWS ECR vulnerabilities;",
+        "Supported the product platform strategy."
+      ]
+    },
+    {
+      "cargo": "Tech Manager",
+      "empresa": "Natura &Co",
+      "periodo": "Mar 2021 - Dec 2021",
+      "local": "",
+      "itens": [
+        "Led LatAm Kafka/MSK and Spark/EMR upgrades with no downtime."
+      ]
+    },
+    {
+      "cargo": "IT Tech Lead",
+      "empresa": "Itaú Unibanco S/A",
+      "periodo": "May 2018 - Feb 2021",
+      "local": "",
+      "itens": [
+        "Led a team of 6 engineers (Java, Android, and iOS);",
+        "Led the delivery of multi-factor authentication (fingerprint and facial biometrics) to Credicard and ITI;",
+        "Led the integration of ITI to PIX in the authentication path."
+      ]
+    },
+    {
+      "cargo": "Staff Software Engineer",
+      "empresa": "MercadoLibre.com",
+      "periodo": "Dec 2015 - May 2018",
+      "local": "",
+      "itens": [
+        "Created the MercadoPago plugin for WooCommerce and evangelized the product;",
+        "Negotiated the unification of products of the open-source community;",
+        "Represented the company at national and international conferences;",
+        "Reached +20k customers in 2018 and +$5 million in transactions per month."
+      ]
+    },
+    {
+      "cargo": "Project Analyst",
+      "empresa": "NIC.br (Núcleo de Informação e Coordenação do Ponto BR)",
+      "periodo": "Jan 2014 - Dec 2015",
+      "local": "",
+      "itens": [
+        "Co-authored the SIMET meter and the FIESP Broadband Monitor;",
+        "Represented the department and the area at technology conferences;",
+        "Carried out technological research in telephony."
+      ]
+    },
+    {
+      "cargo": "Other Experiences",
+      "empresa": "",
+      "periodo": "Apr 2006 - Present",
+      "local": "",
+      "itens": [
+        "Book author, 2013: A Platform to Develop for Unmanned Aerial Vehicles;",
+        "Professor, 2018 to present (FMU, Descomplica, FIAP, and Infnet);",
+        "Software Engineering Consultant, 2011 to 2016 (VIVO and start-ups);",
+        "C/Java Programmer, 2006 to 2010 (Anglo Prudentino IT Department)."
+      ]
+    }
+  ],
+  "formacao": [
+    {
+      "curso": "Master in Business Administration (MBA) | Analytics in Big Data",
+      "instituicao": "FIA Business School",
+      "periodo": "May 2015 - Dec 2016",
+      "local": "São Paulo - SP"
+    },
+    {
+      "curso": "Master (M.Sc.) in Computing | Distributed Artificial Intelligence",
+      "instituicao": "Universidade Federal do Rio Grande do Sul (UFRGS)",
+      "periodo": "Mar 2010 - Mar 2012",
+      "local": "Porto Alegre - RS"
+    },
+    {
+      "curso": "Bachelor (B.Sc.) in Computer Science | Software Engineering",
+      "instituicao": "Universidade Estadual Paulista (UNESP)",
+      "periodo": "Feb 2005 - Feb 2010",
+      "local": "Presidente Prudente - SP"
+    }
+  ],
+  "certificacoes": [
+    {
+      "nome": "AWS Certified AI Practitioner (AIF-C01)",
+      "emissor": "Amazon Web Services",
+      "ano": "",
+      "url": "https://www.credly.com/badges/68e18d3b-596e-4c0b-9a7c-ac1cad01ee2d/linked_in_profile"
+    },
+    {
+      "nome": "Google Cloud Computing",
+      "emissor": "Google Cloud Skills Boost",
+      "ano": "",
+      "url": "https://www.cloudskillsboost.google/public_profiles/4bacc30d-9a75-4dfe-b913-9068704b733e"
+    },
+    {
+      "nome": "Executive Formation in Strategy",
+      "emissor": "FGV",
+      "ano": "2021",
+      "url": "https://www.brasilopenbadge.com.br/pages/badge/63aa6680ffdbedff257a2c5bcb2cc27f"
+    }
+  ],
+  "idiomas": [
+    {"idioma": "English", "nivel": "Professional working proficiency; led global distributed teams and presented at international conferences"},
+    {"idioma": "Spanish (LatAm)", "nivel": "Advanced reading, writing, listening, and speaking"},
+    {"idioma": "Portuguese", "nivel": "Native"}
+  ],
+  "secoes_extras": [
+    {
+      "titulo": "How I Work",
+      "coluna": "direita",
+      "itens": [
+        "**Stakeholder Interest Balance** through OKR/KPI decisions and estimated P&L outcomes;",
+        "**Cloud Architecture Decisions** through contact with multiple technical partner areas and system engineering;",
+        "**Career Coach** by 1:1s, feedback, and people evaluation."
+      ]
+    }
+  ]
+}
