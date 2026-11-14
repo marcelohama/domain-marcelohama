@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Extrai o texto dos três PDFs de origem (assets/) para arquivos .txt.
+"""Extrai o texto dos quatro PDFs de origem (assets/) para arquivos .txt.
 
 Uso:
     python extract_sources.py --out-dir <diretório de trabalho>
@@ -8,6 +8,8 @@ Grava, no diretório indicado:
     cv_base.txt    texto do "CV - MARCELO TOMIO HAMA.pdf" (modelo de formato e de tom)
     linkedin.txt   texto do "LinkedInProfile.pdf" (conteúdo profissional completo)
     lattes.txt     texto do "Lattes.pdf" (conteúdo acadêmico completo)
+    docencia.txt   texto do "Docencia.pdf" (disciplinas ministradas, carga horária,
+                   ementas e o que cada uma comprova e não comprova)
 
 Usa o `pdftotext` (poppler) quando existe, porque ele separa melhor as colunas;
 sem ele, usa pypdf (`pip install pypdf`). A extração é refeita a cada execução,
@@ -26,6 +28,7 @@ FONTES = {
     "cv_base.txt": "CV - MARCELO TOMIO HAMA.pdf",
     "linkedin.txt": "LinkedInProfile.pdf",
     "lattes.txt": "Lattes.pdf",
+    "docencia.txt": "Docencia.pdf",
 }
 
 
