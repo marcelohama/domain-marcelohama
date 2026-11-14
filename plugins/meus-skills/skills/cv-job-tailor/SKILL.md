@@ -18,10 +18,11 @@ Uma JD, colada no chat, anexada ou em link. Se não veio, peça só isso. Não p
 | `assets/LinkedInProfile.pdf` | Conteúdo profissional completo. Fonte principal dos fatos de carreira. |
 | `assets/Lattes.pdf` | Conteúdo acadêmico completo: formação, dissertações, publicações, docência, palestras. |
 | `assets/CV - MARCELO TOMIO HAMA.pdf` | CV base: modelo de template, tom e tamanho, e desempate quando as fontes divergem. |
+| `assets/Docencia.pdf` | Base de docência: as 14 disciplinas ministradas, com carga horária, instituição, ementa e uma tabela do que cada tema **comprova e não comprova**. Use quando a vaga pede um tema que as outras fontes não cobrem como experiência corporativa. |
 | `references/historias-star.md` | Banco de histórias STAR: o como de cada resultado e resultados que os PDFs não trazem. |
 | `references/fontes.md` | O que só existe em cada fonte, divergências conhecidas e ordem de precedência. |
 | `references/exemplo_spec.json` | O CV base transcrito para o formato de entrada do gerador. |
-| `scripts/extract_sources.py` | Extrai o texto dos três PDFs. |
+| `scripts/extract_sources.py` | Extrai o texto dos quatro PDFs. |
 | `scripts/build_cv.py` | Monta o PDF a partir de um spec JSON. |
 | `scripts/check_cv.py` | Lê o PDF como um ATS e confere ordem de leitura, datas e palavras-chave. |
 
@@ -29,7 +30,7 @@ Dependências: `pip install reportlab pypdf`.
 
 ## Onde estão os recursos
 
-Os scripts, as referências e os três PDFs ficam no repositório privado `marcelohama/domain-marcelohama`, na pasta `plugins/meus-skills/skills/cv-job-tailor/`. Todos os caminhos deste documento são relativos a essa pasta. Antes de começar, localize-a:
+Os scripts, as referências e os quatro PDFs ficam no repositório privado `marcelohama/domain-marcelohama`, na pasta `plugins/meus-skills/skills/cv-job-tailor/`. Todos os caminhos deste documento são relativos a essa pasta. Antes de começar, localize-a:
 
 - **Há `scripts/` e `assets/` ao lado deste arquivo** (skill carregada do próprio repositório ou do plugin `meus-skills`): use a pasta diretamente.
 - **Sessão na nuvem, só com este SKILL.md**: anexe o repositório `marcelohama/domain-marcelohama` à sessão, clone e trabalhe a partir da pasta acima.
@@ -41,7 +42,7 @@ Se nenhum caminho funcionar, diga o que falta (acesso ao repositório ou ao comp
 
 Use um diretório de trabalho temporário, fora da skill, para os textos extraídos e o spec.
 
-1. **Extrair as fontes**: `python scripts/extract_sources.py --out-dir <trabalho>`. Leia os três .txt inteiros, depois `references/historias-star.md` e `references/fontes.md`. A extração é refeita a cada uso para que um PDF atualizado em `assets/` valha na hora.
+1. **Extrair as fontes**: `python scripts/extract_sources.py --out-dir <trabalho>`. Leia os quatro .txt inteiros, depois `references/historias-star.md` e `references/fontes.md`. A extração é refeita a cada uso para que um PDF atualizado em `assets/` valha na hora.
 2. **Ler a vaga** e separar: cargo e senioridade; requisitos obrigatórios; desejáveis; termos exatos que ela usa (tecnologias, métodos, domínio de negócio); idioma; local e modelo de trabalho; instruções de candidatura.
 3. **Mapear evidência**: para cada requisito, o fato das fontes que o comprova. O que ficar sem evidência é lacuna e vai para o relato, não para o CV.
 4. **Selecionar e redigir** conforme as seções abaixo.
@@ -54,7 +55,7 @@ Grave o PDF na pasta de trabalho do usuário, ou entregue na conversa quando a s
 
 ## Veracidade
 
-Tudo o que entra no CV precisa estar em uma das fontes (os três PDFs e o banco de histórias STAR) ou ter sido dito pelo usuário na conversa. Reordenar, resumir, traduzir e trocar um termo pelo sinônimo que a vaga usa é personalizar. Acrescentar tecnologia, número, cargo, escopo de equipe ou domínio que as fontes não mostram é inventar, e um CV inventado cai na primeira pergunta técnica da entrevista, queimando a candidatura e a referência.
+Tudo o que entra no CV precisa estar em uma das fontes (os quatro PDFs e o banco de histórias STAR) ou ter sido dito pelo usuário na conversa. Reordenar, resumir, traduzir e trocar um termo pelo sinônimo que a vaga usa é personalizar. Acrescentar tecnologia, número, cargo, escopo de equipe ou domínio que as fontes não mostram é inventar, e um CV inventado cai na primeira pergunta técnica da entrevista, queimando a candidatura e a referência.
 
 - Números saem das fontes exatamente como estão. Quando divergirem, siga a precedência de `references/fontes.md`.
 - Do banco de histórias STAR, o marcador aproveita a ação e o resultado. Histórias sobre uma pessoa específica (atrito, baixa performance, desligamento) ficam para a entrevista: no CV entra só o resultado para o time.
@@ -70,6 +71,7 @@ O CV base já é o resultado de um corte. Para a vaga, corte de novo, com o crit
 - **Empregos recentes pouco relevantes** ficam com o cabeçalho e 1 marcador. Não remova o emprego: buraco na linha do tempo chama mais atenção que experiência lateral, e ATS soma tempo de experiência pelas datas.
 - **Experiência antiga** (antes de 2014) vira uma entrada única de linhas curtas, como "Other Experiences" no CV base, ou sai. Recupere um item antigo quando a vaga pedir exatamente aquilo (mobile, telecom, educação).
 - **Docência e produção acadêmica** (aulas, livro, artigos, palestras) entram com destaque quando a vaga valoriza isso: educação, pesquisa, treinamento, developer relations, cargos em que formar pessoas é parte do trabalho. Em vaga de mercado comum, reduza a uma linha ou omita, e tire do resumo: ocupa espaço e sugere agenda dividida.
+- **Docência como evidência de domínio técnico** é outro uso, e tem regra própria. Quando a vaga pede um tema que as outras fontes não cobrem como experiência corporativa — BI e visualização, machine learning, segurança, big data —, consulte `docencia.txt`: ele traz a carga horária, a ementa e uma tabela do que cada tema **comprova e não comprova**. Nunca apresente aula como operação em produção; use a linha "comprova" para o que entra no CV e a linha "não comprova" para declarar a lacuna no relato final. Uma disciplina de 66h sobre o tema da vaga vale uma linha de competência, não um bloco de experiência.
 - **Tecnologias** que a vaga não pede e que não dizem nada sobre senioridade saem da lista de competências. Lista curta e aderente vale mais que lista longa.
 - **"How I Work"** só fica se sobrar espaço e a vaga for de liderança.
 - **Dados pessoais** nunca: veja a lista em `references/fontes.md`. Local, só cidade/região e país, e só quando a vaga tem requisito de local, fuso ou modelo híbrido/presencial.
