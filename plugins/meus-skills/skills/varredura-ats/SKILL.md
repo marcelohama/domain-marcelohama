@@ -34,14 +34,23 @@ O script lê a tabela de portais e coleta pelas APIs públicas: Greenhouse, Leve
 - `pendentes.json`: portais sem coletor;
 - `log.txt`: contagem por portal.
 
-O filtro de título é deliberadamente largo: gerência, coordenação, tech lead, staff/principal e arquitetura em tecnologia. Ele exclui funções de negócio, de entrada e de segurança especializada. É melhor ler algumas vagas a mais do que perder uma boa por causa do título.
+O filtro de título é deliberadamente largo:
+
+- **inclui** gerência, coordenação, tech lead, staff/principal, arquitetura e especialista em tecnologia, nas formas masculina e feminina;
+- **exclui** só funções claramente de negócio ou de entrada.
+
+Domínios de negócio no título ("Crédito", "Produtos Financeiros", "Pagamentos", "Segurança") não excluem a vaga: aparecem em títulos de vagas técnicas. É melhor ler algumas vagas a mais do que perder uma boa por causa do título.
 
 ### 2. Completar os portais pendentes com o navegador do app
 
-Os portais em `pendentes.json` (InHire, Cornerstone, Oracle, Nodi, sites institucionais) montam a lista por JavaScript.
+Os portais em `pendentes.json` (Cornerstone, InHire, Oracle, Nodi, sites institucionais) montam a lista por JavaScript.
 
-1. Abra cada um no navegador do app (`mcp__Claude_Browser__*`) e extraia título e link das vagas pelas âncoras da página.
-2. Aplique o mesmo critério do filtro.
+**Leia `references/coleta-navegador.md` antes de começar.** Ela traz o script de paginação de cada plataforma e as armadilhas de cada uma.
+
+O ponto central é ler a lista **inteira**: todas as páginas, rolando até o fim. Uma primeira versão desta skill leu só a primeira página do Bradesco (25 de 233 vagas) e concluiu, erradamente, que não havia vaga de tecnologia.
+
+1. Para cada portal, anote o total que ele informa e confira que coletou o mesmo número.
+2. Aplique o mesmo filtro do script.
 3. Para as candidatas, leia a JD na página.
 
 Se um portal não tiver lista de vagas ou não carregar, registre isso nos limites da varredura e siga.
@@ -69,7 +78,10 @@ Leia `requisitos.txt`. Quando o trecho não trouxer os requisitos, leia a JD com
 **Critérios do Marcelo que mudam a leitura:**
 
 - **Lacuna é ferramenta, não categoria de vaga.** Plataforma, SRE, dados, governança e arquitetura podem encaixar. O que derruba o fit é a stack que ele não tem: .NET/C#, JS/React/Node/TypeScript, Terraform/IaC hands-on, Vue, Flutter, ML/DS hands-on, segurança ofensiva/defensiva.
-- **Papel de IC com código diário** pesa contra quando a vaga exige produção hands-on recente numa stack específica. Ele é gestor há 5 anos.
+- **Papel de IC (especialista, arquiteto, staff, tech lead) não é penalidade em si.** A régua é a mesma para IC e para gestão.
+  - Conta como **Parcial**, e não como Ausente, só o requisito explícito de código hands-on diário ("perfil hands-on", "desenvolver e sustentar aplicações"), porque ele é gestor desde 2021.
+  - Fora isso, avalie as ferramentas e o domínio como em qualquer vaga.
+- **Ferramenta obrigatória ausente** (por exemplo "Azure (obrigatório)") é gap eliminatório e limita o fit a 65%. Quando a ferramenta só aparece listada, sem "obrigatório", conta como Fraco ou Parcial.
 - **Cargo dois níveis acima do atual** (Director/Head vindo de Manager) em empresa onde ele não tem histórico: marque como despriorizado, mesmo com fit alto.
 - **Regime PJ/contractor não elimina.** Sinalize e compare pela média mensal (CLT × 1,11; PJ sem 13º nem férias).
 - **Local fora de SP** (BH, Curitiba, Recife) não elimina, mas entra como condição parcial e como risco a verificar.
