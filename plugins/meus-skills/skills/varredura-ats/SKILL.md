@@ -1,6 +1,6 @@
 ---
 name: varredura-ats
-description: Varre os portais de vagas (ATSs) listados em ats-fontes.md da Recolocação 2026, coleta todas as posições abertas, filtra as de liderança e engenharia sênior em tecnologia, calcula o fit de cada uma contra o CV do Marcelo (critério do cv-job-fit) e entrega a lista de URLs com fit ≥ 75%, registrada no vault e na planilha vagas-fit.xlsx. Use sempre que o pedido for buscar, varrer, garimpar ou levantar vagas nos ATSs ou portais de carreira das empresas, "achar vagas com fit", "rodar a varredura", "atualizar a lista de vagas", ou repetir a busca nos ATSs, mesmo sem citar a skill. Para avaliar uma única vaga já em mãos, use cv-job-fit; para decidir e preparar a candidatura de uma vaga, use pipe-triage.
+description: Varre os portais de vagas (ATSs) listados em ats-fontes.md da Recolocação 2026, coleta todas as posições abertas, filtra as de liderança e engenharia sênior em tecnologia, calcula o fit de cada uma contra o CV do Marcelo (critério do cv-job-fit) e entrega a lista de URLs com fit ≥ 75%, registrada no vault e na planilha vagas-fit do Google Sheets. Use sempre que o pedido for buscar, varrer, garimpar ou levantar vagas nos ATSs ou portais de carreira das empresas, "achar vagas com fit", "rodar a varredura", "atualizar a lista de vagas", ou repetir a busca nos ATSs, mesmo sem citar a skill. Para avaliar uma única vaga já em mãos, use cv-job-fit; para decidir e preparar a candidatura de uma vaga, use pipe-triage.
 ---
 
 # Varredura de ATSs por fit
@@ -14,7 +14,7 @@ Esta skill percorre todos os portais de vagas que o Marcelo acompanha e devolve 
 | Lista de portais (fonte da verdade) | `C:\Users\marce\OneDrive\Documentos\SegundoCerebro\10-Projetos\Recolocacao-2026\ats-fontes.md` |
 | CV e experiências | `C:\Users\marce\OneDrive\Documentos\SegundoCerebro\30-Recursos\curriculo\` (o PDF `CV - MARCELO TOMIO HAMA.pdf` é a base) |
 | Planilha principal (histórico de candidaturas) | `...\Recolocacao-2026\Recolocação-2026.xlsx`, aba Aplicações. **Só leitura** nesta skill |
-| Planilha de resultados | `...\Recolocacao-2026\vagas-fit.xlsx`, aba Vagas, colunas `Tier, Empresa, Posição, Link, Contato, Status, Histórico` |
+| Planilha de resultados | Google Sheets `vagas-fit`: https://docs.google.com/spreadsheets/d/1hSbfB12AstMKfHdgMYyHRIfjBh1cXoOU-smltiPCUbM/edit (aba Vagas, colunas `Tier, Empresa, Posição, Link, Contato, Status, Histórico`). Só existe a versão online |
 | Nota da varredura | `...\Recolocacao-2026\busca-vagas-AAAA-MM-DD.md`, listada no `INDEX.md` do projeto |
 
 Se a lista de portais mudou de lugar, pergunte antes de seguir. Ela é a única origem da busca, e varrer de memória traria portais errados.
@@ -100,7 +100,7 @@ Status de ATS ou etapa automática não contam como avanço. Só agenda com uma 
 
 ### 5. Registrar
 
-**Planilha `vagas-fit.xlsx`:** acrescente uma linha por vaga com fit ≥ 75% que ainda não esteja lá (compare pelo Link, sem duplicar).
+**Planilha `vagas-fit` (Google Sheets):** acrescente uma linha por vaga com fit ≥ 75% que ainda não esteja lá (compare pelo Link, sem duplicar). Grave pelo conector do Google Sheets, na mesma planilha e com o mesmo link. Se o conector não estiver disponível, pare e peça para ativá-lo. Não crie um arquivo novo nem uma cópia local, porque isso cria versões paralelas.
 
 | Coluna | Conteúdo |
 |---|---|
@@ -112,7 +112,7 @@ Status de ATS ou etapa automática não contam como avanço. Só agenda com uma 
 | Status | `triagem`, ou o status da planilha principal se a vaga já estiver lá |
 | Histórico | `DD/MM varredura de ATSs: fit ~NN%, <local/modelo>. <risco ou observação>` |
 
-Use fonte Arial, Link como hiperlink, e mantenha o filtro e o cabeçalho congelado. Faça backup antes de gravar e confirme que o arquivo não está aberto no Excel.
+Mantenha a ordem por Empresa e, dentro dela, por fit decrescente, além do filtro e do cabeçalho congelado. Leia a planilha logo antes de gravar e confira o resultado depois.
 
 **Nota no vault `busca-vagas-AAAA-MM-DD.md`:**
 
