@@ -29,13 +29,13 @@ BOARD_CONHECIDO = {
 
 # Senioridade/liderança no título. Inclui formas femininas e trilhas de especialista,
 # porque papel de IC não é motivo de descarte: o que derruba o fit é ferramenta que falta.
-ROLE = re.compile(r"\b(gerente|manager|head|coordenador(a)?|coordenacao|lead|leader|lider|lideranca|diretor(a)?|director|superintendente|principal|staff|arquitet[oa]|architect|especialista|specialist|expert|chapter)\b")
+ROLE = re.compile(r"\b(gerente|manager|head|coordenador(a)?|coordenadora|coordinator|coordenacao|lead|leader|lider|lideranca|diretor(a)?|director|superintendente|principal|staff|arquitet[oa]|architect|especialista|specialist|expert|chapter)\b")
 # Tecnologia no título (inclui linguagens e funções técnicas comuns em títulos curtos, como "Tech Lead Java").
 TECH = re.compile(r"(engenh|engineer|software|tecnolog|technology|\btech\b|\bti\b|\bit\b|plataform|platform|dados|\bdata\b|\bia\b|\bai\b|intelig.ncia artificial|cloud|sre|devops|arquitet|architect|sistemas|systems|desenvolvimento|development|developer|infra|mlops|backend|back-end|fullstack|java|python|golang|kotlin|solucoes|solutions|core banking)")
 # Exclui só funções claramente de negócio ou de entrada. Domínios de negócio ("crédito",
 # "financeiro", "pagamentos", "segurança") NÃO excluem: aparecem em títulos de vagas técnicas.
-EXCLUI = re.compile(r"(vendas|comercial|loja|relacionamento|marketing|juridic|contab|fp&a|people|recursos humanos|\brh\b|logistic|\bdesign(er)?\b|product manager|product owner|account manager|customer success|\bsales\b|brand|auditor|tax|tribut|fiscal|recruit|talent|estagi|intern\b|trainee|aprendiz|analista|analyst|pleno|junior|jr\b|\bpl\b|scientist|cientista|data science|supply|compras|procurement|facilities|business development|partnership|growth|cobranca|advisor|enferm|medic|farmac|engenharia de projetos|planejamento comercial|agile coach|scrum master)")
-LOCAL_OK = re.compile(r"(brasil|brazil|sao paulo|\bsp\b|remot|remote|latam|barueri|osasco|-sp|rio de janeiro|belo horizonte|curitiba|campinas|alphaville|porto alegre|florianopolis|recife|anywhere|^\s*$)")
+EXCLUI = re.compile(r"(vendas|comercial|loja|relacionamento|marketing|juridic|contab|fp&a|people|recursos humanos|\brh\b|\bdesign(er)?\b|product manager|product owner|account manager|customer success|\bsales\b|brand|auditor|tax|tribut|fiscal|recruit|talent|estagi|intern\b|trainee|aprendiz|analista|analyst|pleno|junior|jr\b|\bpl\b|scientist|cientista|data science|supply|compras|procurement|facilities|business development|partnership|advisor|enferm|medic|farmac|engenharia de projetos|planejamento comercial|agile coach|scrum master)")
+LOCAL_OK = re.compile(r"(brasil|brazil|sao paulo|\bsp\b|remot|remote|latam|barueri|osasco|-sp|rio de janeiro|belo horizonte|curitiba|campinas|alphaville|porto alegre|florianopolis|recife|anywhere|-(ac|al|ap|am|ba|ce|df|es|go|ma|mt|ms|mg|pa|pb|pr|pe|pi|rj|rn|rs|ro|rr|sc|se|to)\b|, (mg|pr|sc|rs|rj|pe|ba|df|go|es|ce)\b|^\s*$)")
 REQ_HDR = re.compile(r"(requisit|requirement|qualifica|what you.?ll bring|what you bring|who you are|o que (voce precisa|esperamos|buscamos)|you have|must have|esperamos de voce|nao pode faltar|what we.?re looking|about you|sobre voce|diferencia)", re.I)
 
 
