@@ -59,7 +59,7 @@ g()
 - A contagem aparece como "N VAGA(S) ABERTA(S)".
 - Os links de vaga contêm `/job/`.
 
-## Sites sem lista (por exemplo F1rst)
+## Sites sem lista de vagas
 
 Registre o portal nos limites da varredura e siga. Se descobrir o ATS real (um link "Ver vaga" para Gupy, Greenhouse e afins), atualize `ats-fontes.md` e `BOARD_CONHECIDO` no script.
 
@@ -68,8 +68,3 @@ Registre o portal nos limites da varredura e siga. Se descobrir o ATS real (um l
 - O portal é global, e o filtro `location=Brazil` da URL não filtra.
 - A listagem é HTML do servidor. Busque `/jobs?page=N&size=48` com `fetch` até não vir mais vaga, e leia o local no cartão de cada link `/job/...-jid-<n>`, no texto entre "Location" e "Employment".
 - Fique com os locais no Brasil (em 22/11 eram 180 de 396 vagas) e baixe a descrição de cada candidata pela própria URL.
-
-## F1rst (Santander)
-
-- O site institucional não lista vagas.
-- O link "Mais vagas" leva a `betechwithsantander.com`, que o navegador do app não abriu em 22/11. Se continuar bloqueado, registre o portal nos limites da varredura.
