@@ -28,7 +28,23 @@ Não tente extrair tokens de API da página. A interface basta, e esse caminho �
 ## InHire (Pottencial, Riachuelo, Cielo)
 
 - As vagas são links com o padrão `/vagas/<uuid>/<slug>`.
-- A lista pode carregar mais itens ao rolar a página. Role até o fim (`window.scrollTo(0, document.body.scrollHeight)`) várias vezes, até a contagem de links parar de crescer.
+- A lista carrega mais vagas ao rolar um **painel interno** da página, e rolar só a janela não basta. Uma varredura anterior parou em 60 das 390 vagas da Riachuelo por causa disso.
+- Role a janela e todo elemento com `overflow-y` auto ou scroll, repetindo até a contagem de links parar de crescer. Mantenha cada chamada curta, porque o `javascript_tool` expira em 45 s:
+
+```js
+const g=()=>new Set([...document.querySelectorAll('a[href*="/vagas/"]')].map(a=>a.href)).size;
+let prev=-1,same=0;
+for(let i=0;i<25&&same<3;i++){
+  [...document.querySelectorAll('*')].forEach(e=>{if(e.scrollHeight>e.clientHeight+50&&/auto|scroll/.test(getComputedStyle(e).overflowY))e.scrollTop=e.scrollHeight;});
+  window.scrollTo(0,document.body.scrollHeight);
+  await new Promise(r=>setTimeout(r,900));
+  const n=g(); if(n===prev) same++; else {same=0;prev=n;}
+}
+g()
+```
+
+- Se a contagem ainda estiver crescendo no fim, rode o script de novo.
+- Guarde o link completo, com o slug: `/vagas/<uuid>` sem o slug abre uma página de erro.
 - A JD fica na própria página da vaga.
 
 ## Nodi (dLocal)
