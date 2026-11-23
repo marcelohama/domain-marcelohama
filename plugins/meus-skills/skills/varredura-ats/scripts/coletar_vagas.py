@@ -29,7 +29,7 @@ BOARD_CONHECIDO = {
 
 # Senioridade/liderança no título. Inclui formas femininas e trilhas de especialista,
 # porque papel de IC não é motivo de descarte: o que derruba o fit é ferramenta que falta.
-ROLE = re.compile(r"\b(gerente|manager|head|coordenador(a)?|coordenacao|lead|lider|lideranca|diretor(a)?|director|superintendente|principal|staff|arquitet[oa]|architect|especialista|specialist|expert|chapter)\b")
+ROLE = re.compile(r"\b(gerente|manager|head|coordenador(a)?|coordenacao|lead|leader|lider|lideranca|diretor(a)?|director|superintendente|principal|staff|arquitet[oa]|architect|especialista|specialist|expert|chapter)\b")
 # Tecnologia no título (inclui linguagens e funções técnicas comuns em títulos curtos, como "Tech Lead Java").
 TECH = re.compile(r"(engenh|engineer|software|tecnolog|technology|\btech\b|\bti\b|\bit\b|plataform|platform|dados|\bdata\b|\bia\b|\bai\b|intelig.ncia artificial|cloud|sre|devops|arquitet|architect|sistemas|systems|desenvolvimento|development|developer|infra|mlops|backend|back-end|fullstack|java|python|golang|kotlin|solucoes|solutions|core banking)")
 # Exclui só funções claramente de negócio ou de entrada. Domínios de negócio ("crédito",
@@ -142,6 +142,13 @@ def meli(emp, url):
     return out
 
 
+def meli_jd(url):
+    # A página da vaga é montada por JavaScript; a descrição vem desta API pública.
+    pid = re.search(r"id=(\d+)", url).group(1)
+    d = json.loads(get(f"https://careers-meli.mercadolibre.com/api/position-detail?id={pid}"))
+    return strip_html(d.get("description") or "")[:12000]
+
+
 def html_jd(url):
     return strip_html(get(url))[:12000]
 
@@ -230,7 +237,12 @@ def main():
         if v["jd"]:
             continue
         try:
-            v["jd"] = gupy_jd(v["url"]) if ".gupy.io" in v["url"] else html_jd(v["url"])
+            if ".gupy.io" in v["url"]:
+                v["jd"] = gupy_jd(v["url"])
+            elif v["plataforma"] == "meli":
+                v["jd"] = meli_jd(v["url"])
+            else:
+                v["jd"] = html_jd(v["url"])
         except Exception as e:
             v["jd"] = f"ERRO ao baixar JD: {e}"
 
