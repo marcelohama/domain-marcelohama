@@ -25,7 +25,29 @@ const uniq=[...new Map(all.map(x=>[x.u,x])).values()];window.__vagas=uniq;uniq.l
 
 Não tente extrair tokens de API da página. A interface basta, e esse caminho é bloqueado pelas permissões.
 
-## InHire (Pottencial, Riachuelo, Cielo)
+## InHire (24 portais em `ats-fontes.md`)
+
+**Coletor em lote.** Para não abrir portal por portal, mande um único `browser_batch` com um par de ações para cada URL InHire do `ats-fontes.md`: `navigate` para a URL e, em seguida, `javascript_tool` com o script abaixo. Em 23/11, 8 portais por lote rodaram sem expirar.
+
+```js
+await new Promise(r=>setTimeout(r,2500));
+const links=()=>[...new Map([...document.querySelectorAll('a[href*="/vagas/"]')].map(a=>[a.href,a.innerText.split('\n')[0].trim()])).entries()];
+let p=-1,s=0;
+for(let i=0;i<25&&s<3;i++){
+  [...document.querySelectorAll('*')].forEach(e=>{if(e.scrollHeight>e.clientHeight+50&&/auto|scroll/.test(getComputedStyle(e).overflowY))e.scrollTop=e.scrollHeight;});
+  window.scrollTo(0,document.body.scrollHeight);
+  await new Promise(r=>setTimeout(r,700));
+  const n=links().length; if(n===p)s++; else{s=0;p=n;}
+}
+({empresa:document.title, inativo:document.title==='InHire'||/inactive|inativa/i.test(document.body.innerText), vagas:links().map(([url,titulo])=>({titulo,url}))})
+```
+
+- **Saída:** `empresa`, `inativo` e a lista `vagas` com título e URL. A lista não mostra local nem modelo de trabalho: leia-os na JD das candidatas.
+- **Portal inativo:** o título da página fica "InHire" ou aparece "This company is temporarily inactive". Em 23/11 estavam assim Agrotools, CI&T e Tractian. Marque o portal como ❌ em `ats-fontes.md` e procure o canal atual da empresa.
+- **Portal grande:** na Riachuelo, uma passada pegou 220 das 390 vagas. Quando a contagem passar de ~150, rode o script de novo na mesma página até o número parar de crescer.
+- **Sem API:** não use a API interna do InHire (`api.inhire.app`). Ela não é documentada para uso público e o acesso direto é bloqueado pelas permissões. A coleta é sempre pela página.
+
+**Detalhes da página:**
 
 - As vagas são links com o padrão `/vagas/<uuid>/<slug>`.
 - A lista carrega mais vagas ao rolar um **painel interno** da página, e rolar só a janela não basta. Uma varredura anterior parou em 60 das 390 vagas da Riachuelo por causa disso.
