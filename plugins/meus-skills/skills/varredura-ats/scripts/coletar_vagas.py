@@ -43,10 +43,20 @@ def norm(s):
     return unicodedata.normalize("NFKD", str(s or "")).encode("ascii", "ignore").decode().lower()
 
 
-def get(url, data=None, headers=None):
+def get(url, data=None, headers=None, tentativas=4):
+    """GET/POST com nova tentativa em 429 e 5xx (limite de taxa de Workday e afins)."""
+    import time, urllib.error
     h = dict(UA); h.update(headers or {})
-    req = urllib.request.Request(url, data=data, headers=h)
-    return urllib.request.urlopen(req, timeout=TIMEOUT).read().decode("utf-8", "ignore")
+    for t in range(tentativas):
+        req = urllib.request.Request(url, data=data, headers=h)
+        try:
+            return urllib.request.urlopen(req, timeout=TIMEOUT).read().decode("utf-8", "ignore")
+        except urllib.error.HTTPError as e:
+            if (e.code == 429 or e.code >= 500) and t < tentativas - 1:
+                espera = int(e.headers.get("Retry-After") or 0) or 3 * 2 ** t
+                time.sleep(min(espera, 30))
+                continue
+            raise
 
 
 def strip_html(t):
@@ -118,9 +128,15 @@ def workday(emp, url):
     tenant = p.netloc.split(".")[0]
     site = [s for s in p.path.split("/") if s][-1]
     api = f"https://{p.netloc}/wday/cxs/{tenant}/{site}/jobs"
+    import time
+    hdr = {"Content-Type": "application/json"}
+    # Tenants globais (NVIDIA, Fiserv, Wex...) têm milhares de vagas: busca só as do Brasil.
+    prim = json.loads(get(api, data=json.dumps({"appliedFacets": {}, "limit": 1, "offset": 0, "searchText": ""}).encode(), headers=hdr))
+    busca = "Brazil" if prim.get("total", 0) > 400 else ""
     out, off, total = [], 0, None
     while True:
-        r = json.loads(get(api, data=json.dumps({"appliedFacets": {}, "limit": 20, "offset": off, "searchText": ""}).encode(), headers={"Content-Type": "application/json"}))
+        time.sleep(0.5)
+        r = json.loads(get(api, data=json.dumps({"appliedFacets": {}, "limit": 20, "offset": off, "searchText": busca}).encode(), headers=hdr))
         total = r.get("total", 0) if total is None else total
         for x in r.get("jobPostings", []):
             out.append(vaga(emp, "workday", x["title"], x.get("locationsText", ""), f"https://{p.netloc}{p.path.rstrip('/')}{x['externalPath']}"))
